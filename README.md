@@ -1,0 +1,2 @@
+# pyDataChart
+finance data visiable
