@@ -32,5 +32,6 @@ if __name__ == '__main__':
     x = np.random.randn(1, N)
     y = np.random.randn(1, N)
     T = np.arctan2(x, y)
+
     plt.scatter(x, y, c=T, s=25, alpha=0.5, marker='o')
     plt.show()
