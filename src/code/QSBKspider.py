@@ -1,12 +1,10 @@
-import urllib
+import urllib.request as request
 import re
 
 class QSBKspider:
-
     #init some vals
     def __init__(self):
         self.pageIndex = 1
-        self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
         self.headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -20,11 +18,11 @@ class QSBKspider:
     def getHtml(self, pageIndex, baseUrl):
         try:
             url = baseUrl + str(pageIndex)
-            req = urllib.request.Request(url, None, self.headers)
-            response = urllib.request.urlopen(req, timeout=4000)
+            req = request.Request(url, None, self.headers)
+            response = request.urlopen(req, timeout=4000)
             html = response.read().decode('utf-8')
             return html
-        except urllib.request.URLError as e:
+        except request.URLError as e:
             print(e)
 
     def getStories(self, pageIndex, baseUrl):
@@ -54,17 +52,21 @@ class QSBKspider:
                 self.pageIndex += 1
 
     def getOneStory(self, pageStories, page):
+        index = 1
         for story in pageStories:
-            isQuit = input()
+            isQuit = str(input())
             self.loadPage()
             if isQuit == 'Q':
                 self.enable = False
                 return
-            print(page, story[0], story[1], story[2]+"人点赞")
+            else:
+                print("This is page %d.and %dth.\n Author:%s.\n Content:%s \n %s people like this joking.\n" % (page, index, story[0],story[1],story[2]))
+                index += 1
+                # print("当前第%d页", page, story[0], story[1], story[2]+"人点赞")
 
 
     def start(self):
-        print('please wait...\n','press Q to quit!')
+        print('Welcome to QSBKBBS! ','any key next enjoy,and press Q to quit!')
         self.enable = True
         self.loadPage()
         nowPage = 0
@@ -74,11 +76,10 @@ class QSBKspider:
                 nowPage += 1
                 del self.stories[0]
                 self.getOneStory(pageStories, nowPage)
+                # for story in pageStories:
 
 
 if __name__ == '__main__':
     spider = QSBKspider()
     spider.start()
-
-
 
