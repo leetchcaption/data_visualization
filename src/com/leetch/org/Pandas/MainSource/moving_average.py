@@ -67,8 +67,72 @@ dataset = [
 ]
 subplot(121)
 boxplot(dataset, vert=False)
-
 subplot(122)
 hist(dataset)
 
+import matplotlib.pyplot as pl
+import numpy as np
+
+x = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+print(x)
+yc = np.cos(x)
+ys = np.sin(x)
+pl.plot(x, yc)
+pl.grid(True)
+line = pl.plot(x, ys)
+pl.show()
+
+# 添加图例和注解
+# generate different normal distributions
+from matplotlib.pyplot import *
+import numpy as np
+x1, x2, x3 = np.random.normal(30, 3, 100)\
+    , np.random.normal(20, 2, 100)\
+    , np.random.normal(10, 3, 100)
+#plot them
+plot(x1, label='plot')
+plot(x2, label='2nd plot')
+plot(x3, label='last plot')
+# generate a legend box
+legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+       ncol=3, mode="expand", borderaxespad=0.)
+# annotate an importtant value
+annotate("Important value", (55,20), xycoords='data',
+         xytext=(5,38),
+         arrowprops=dict(arrowstyle='->'))
 show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.linspace(-np.pi, np.pi, 500, endpoint=True)
+# 正弦函数，将坐标轴移动到图纸中央
+y = np.sin(x)
+plt.plot(x, y)
+ax = plt.gca()
+# hide two spines, 隐藏上部和右侧的两条线
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+# move bottom left spine to 0,0
+ax.spines['bottom'].set_position(('data', 0))
+ax.spines['left'].set_position(('data', 0))
+# move ticks positions
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+plt.show()
+
+# 绘制直方图，表示一定间隔下的数据点频率的垂直矩形为bin；
+# 显示数据的相对频率，直方图的总面积=1
+import numpy as np
+import matplotlib.pyplot as plt
+
+mu = 100
+sigma = 15
+x = np.random.normal(mu, sigma, 10000)
+ax = plt.gca()
+# the histogram of the data
+ax.hist(x, bins=35, color='r')
+ax.set_xlabel('Values')
+ax.set_ylabel('Frequency')
+#设置 title，基于对latex表达式的支持，在Python格式化字符串中加入了数学符号
+ax.set_title(r'$\mathrm{Histogram:}\ \mu=%d, \ \sigma=%d$' % (mu, sigma))
+plt.show()
