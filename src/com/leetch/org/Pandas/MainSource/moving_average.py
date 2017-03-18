@@ -1,14 +1,11 @@
 # coding=utf-8
-
 from pylab import *
 from numpy import *
 def moving_average(interval, window_size):
     window = ones(int(window_size)) / float(window_size)
     return convolve(interval,window, 'same')
-
 t = linspace(-4, 4, 100)
 y = sin(t) + randn(len(t))*0.1
-
 plot(t, y, 'k.')
 y_av = moving_average(y, 10)
 plot(y, y_av, 'r')
@@ -18,12 +15,10 @@ grid(True)
 show()
 
 
-
 from matplotlib import pyplot
 pyplot.plot([1,2,3,2,3,2,3,1])
 pyplot.plot([1,2,3,2],[3,2,3,1])
 pyplot.show()
-
 
 
 from matplotlib.pyplot import *
@@ -57,7 +52,6 @@ scatter(x, y)
 show()
 
 
-
 from pylab import *
 dataset = [
     113, 115, 119, 121, 124,
@@ -72,7 +66,6 @@ hist(dataset)
 
 import matplotlib.pyplot as pl
 import numpy as np
-
 x = np.linspace(-np.pi, np.pi, 256, endpoint=True)
 print(x)
 yc = np.cos(x)
@@ -81,6 +74,7 @@ pl.plot(x, yc)
 pl.grid(True)
 line = pl.plot(x, ys)
 pl.show()
+
 
 # 添加图例和注解
 # generate different normal distributions
@@ -101,6 +95,7 @@ annotate("Important value", (55,20), xycoords='data',
          xytext=(5,38),
          arrowprops=dict(arrowstyle='->'))
 show()
+
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -124,7 +119,6 @@ plt.show()
 # 显示数据的相对频率，直方图的总面积=1
 import numpy as np
 import matplotlib.pyplot as plt
-
 mu = 100
 sigma = 15
 x = np.random.normal(mu, sigma, 10000)
