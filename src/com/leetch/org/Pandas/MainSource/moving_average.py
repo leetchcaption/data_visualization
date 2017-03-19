@@ -1,4 +1,5 @@
-# coding=utf-8
+## coding=utf-8
+
 from pylab import *
 from numpy import *
 def moving_average(interval, window_size):
@@ -130,3 +131,43 @@ ax.set_ylabel('Frequency')
 #设置 title，基于对latex表达式的支持，在Python格式化字符串中加入了数学符号
 ax.set_title(r'$\mathrm{Histogram:}\ \mu=%d, \ \sigma=%d$' % (mu, sigma))
 plt.show()
+
+# 绘制误差条形图
+import numpy as np
+import matplotlib.pyplot as plt
+# generate number of measurements
+x = np.arange(10, 50, 5)
+# values computed from "measured"
+y = np.log(x)
+print(x)
+print(y)
+# add some error samples from standard
+xe = 0.1 * np.abs(np.random.randn(len(y)))
+# draw and show errorbar, 绘画直方图，ecolor:指定误差条的颜色；linewidth:指定误差条边界宽度
+plt.bar(x, y, yerr=xe, width=2, align='center',
+        ecolor='r',color='cyan', label='experiment #1', linewidth=5)
+# give some explainations
+plt.xlabel('# measurement')
+plt.ylabel('Measured values')
+plt.title('Measurements')
+# 图例
+plt.legend(loc='upper left')
+plt.show()
+
+# 绘制饼图
+from pylab import *
+# make a square figure and axes
+fig = figure(1,figsize=(8, 8))
+ax = axes([0.1, 0.1, 0.8, 0.8])
+# the slices will be orderd
+labels = 'Spring', 'Summer', 'Autumn', 'Winter'
+# 占%比，value = x[i]/sum(x)
+x = [15, 30, 35, 20]
+y = sum(x)
+print(y)
+# 偏离圆心移量
+explode = (0.1, 0, 0, 0)
+# autopct 格式化圆弧中的标签格式，如果没有指定startangle，圆弧将从x轴开始逆时针排列开始
+pie(x, explode=explode, labels=labels, autopct='%1.1f%%',startangle=67)
+title('Rainy days by the season')
+show()
