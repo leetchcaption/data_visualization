@@ -1,6 +1,7 @@
 # coding=utf-8
 import numpy as np
 from PIL import Image
+
 image = np.asarray(Image.open("D:/workspace/FileForder/pictures/Source.jpg").convert('L')).astype('float')
 depth = 10.  # (0-100)
 grad = np.gradient(image)  # 取图像灰度的梯度值
