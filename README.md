@@ -1,2 +1,1 @@
-# pyDataChart
-finance data visiable
+read me
